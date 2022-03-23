@@ -1,0 +1,21 @@
+app-id: com.github.youda008.DoomRunner
+runtime: org.kde.Platform
+runtime-version: '5.15'
+sdk: org.kde.Sdk
+command: /opt/DoomRunner/bin/DoomRunner
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --filesystem=host
+  - --device=dri
+modules:
+  - name: DoomRunner
+    buildsystem: simple
+    build-commands:
+      - qmake DoomRunner.pro -spec linux-g++ "CONFIG+=release"
+      - make
+    sources:
+      - type: archive
+        url: https://github.com/Youda008/DoomRunner/archive/refs/tags/v1.5.1.tar.gz
+        sha256: 7ad80bbdb6d3028e109bf0886001aa439ce2bb2eb436b28f8b6fee23854a70c9
